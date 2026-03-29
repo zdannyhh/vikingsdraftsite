@@ -1,0 +1,150 @@
+Rank,Player,Position,School,Weight,Height,Athleticism,Production,Grade
+1,Caleb Downs,SAF,Ohio State,205,Jun-00,90,98,94.46
+2,Jeremiyah Love,RB,Notre Dame,214,Jun-00,96,93,92.59
+3,Sonny Styles,LB,Ohio State,243,"6'4""",92,94,90.89
+4,Rueben Bain Jr.,EDGE,Miami (FL),275,"6'3""",88,93,90.74
+5,David Bailey,EDGE,Texas Tech,250,"6'3""",93,95,90.56
+6,Fernando Mendoza,QB,Indiana,225,"6'5""",82,95,90.23
+7,Arvell Reese,EDGE,Ohio State,243,"6'4""",96,88,89.82
+8,Makai Lemon,WR,USC,195,"5'11""",86,90,89.65
+9,Mansoor Delane,CB,LSU,190,Jun-00,86,91,89.54
+10,Carnell Tate,WR,Ohio State,195,"6'3""",93,87,89
+11,Olaivavega Ioane,OG,Penn State,330,"6'4""",82,87,87.6
+12,Francis Mauigoa,OT,Miami (FL),315,"6'6""",87,90,88.5
+13,Jermod McCoy,CB,Tennessee,193,Jun-00,87,93,88.46
+14,Jordyn Tyson,WR,Arizona State,200,"6'2""",89,87,89.14
+15,Dillon Thieneman,SAF,Oregon,205,Jun-00,86,87,85.97
+16,Avieon Terrell,CB,Clemson,180,"5'11""",86,89,88.33
+17,Emmanuel McNeil-Warren,SAF,Toledo,182,"6'2""",90,88,87
+18,Kenyon Sadiq,TE,Oregon,245,"6'3""",90,86,87.33
+19,Monroe Freeling,OT,Georgia,315,"6'7""",87,86,85.17
+20,Peter Woods,DT,Clemson,315,"6'3""",85,84,87.14
+21,Lee Hunter,DT,Texas Tech,321,"6'4""",85,88,87.23
+22,Kayden McDonald,DT,Ohio State,326,"6'3""",83,88,87.24
+23,Spencer Fano,OT,Utah,308,"6'6""",89,87,86.56
+24,Omar Cooper Jr.,WR,Indiana,201,Jun-00,89,88,85.22
+25,Caleb Banks,DT,Florida,330,"6'6""",88,84,87.4
+26,Caleb Lomu,OT,Utah,304,"6'6""",84,88,87.23
+27,Chris Johnson,CB,San Diego State,185,Jun-00,84,89,85.27
+28,Keldric Faulk,EDGE,Auburn,285,"6'6""",87,86,86.04
+29,Colton Hood,CB,Tennessee,195,Jun-00,86,87,86.72
+30,Akheem Mesidor,EDGE,Miami,280,"6'3""",85,89,85.45
+31,CJ Allen,LB,Georgia,235,"6'1""",89,87,85.24
+32,Christen Miller,DT,Georgia,305,"6'4""",87,86,84.43
+33,Zion Young,EDGE,Missouri,265,"6'5""",89,87,84.73
+34,Max Iheanachor,OT,Arizona State,330,"6'6""",88,87,84.48
+35,Brandon Cisse,CB,South Carolina,190,Jun-00,94,87,86.16
+36,AJ Haulcy,SAF,LSU,222,Jun-00,85,88,84.58
+37,Malachi Lawrence,EDGE,UCF,270,"6'4""",86,86,83.62
+38,D'Angelo Ponds,CB,Indiana,170,"5'9""",86,91,88.31
+39,KC Concepcion,WR,Texas A&M,190,"5'11""",92,86,87.92
+40,Blake Miller,OT,Clemson,315,"6'6""",84,86,85.87
+41,TJ Parker,EDGE,Clemson,260,"6'3""",88,84,84.66
+42,Gracen Halton,DT,Oklahoma,292,"6'2""",88,85,84.26
+43,Connor Lew,OC,Auburn,300,"6'3""",84,86,84.47
+44,Emmanuel Pregnon,OG,Oregon,318,"6'5""",81,86,84.18
+45,Gabe Jacas,EDGE,Illinois,270,"6'3""",90,89,85.46
+46,Keith Abney II,CB,Arizona State,190,Jun-00,87,91,85.23
+47,R Mason Thomas,EDGE,Oklahoma,249,"6'2""",92,86,83.69
+48,Jacob Rodriguez,LB,Texas Tech,235,"6'1""",86,92,85.54
+49,Jonah Coleman,RB,Washington,228,"5'9""",92,86,83.58
+50,Cashius Howell,EDGE,Texas A&M,248,"6'2""",91,87,84.3
+51,Denzel Boston,WR,Washington,209,"6'4""",87,85,85.01
+52,Keionte Scott,SAF,Miami,195,Jun-00,86,89,85.6
+53,Gennings Dunker,OT,Iowa,315,"6'5""",84,86,84.59
+54,Genesis Smith,SAF,Arizona,204,"6'2""",87,87,84.24
+55,Jake Golday,LB,Cincinnati,240,"6'4""",86,88,81.72
+56,Kyle Louis,LB,Pittsburgh,225,Jun-00,90,86,85.24
+57,Sam Hecht,OC,Kansas State,300,"6'4""",90,87,84.69
+58,Chris Brazzell II,WR,Tennessee,200,"6'5""",90,87,84.05
+59,Jadarian Price,RB,Notre Dame,210,"5'11""",91,85,82.09
+60,Elijah Sarratt,WR,Indiana,209,"6'2""",85,87,83.76
+61,Oscar Delp,TE,Georgia,245,"6'5""",86,81,80.01
+62,Ted Hurst,WR,Georgia State,185,"6'3""",88,86,84.67
+63,Brian Parker II,OC,Duke,300,"6'5""",82,85,83.92
+64,Treydan Stukes,CB,Arizona,200,"6'2""",86,88,84.96
+65,Eli Stowers,TE,Vanderbilt,235,"6'4""",90,88,84.05
+66,Mike Washington Jr.,RB,Arkansas,228,"6'2""",89,87,84.05
+67,Chase Bisontis,OG,Texas A&M,315,"6'5""",81,87,85.54
+68,Anthony Hill Jr.,LB,Texas,238,"6'3""",86,87,82.44
+69,Chris Bell,WR,Louisville,220,"6'2""",91,86,86.7
+70,Emmett Johnson,RB,Nebraska,200,"5'11""",90,89,84.1
+71,Skyler Bell,WR,UConn,185,Jun-00,89,89,83.69
+72,Josiah Trotter,LB,Missouri,237,"6'2""",87,87,83.78
+73,Logan Jones,OC,Iowa,302,"6'3""",80,86,80.58
+74,Dani Dennis-Sutton,EDGE,Penn State,270,"6'5""",87,88,84.1
+75,Ja'Kobi Lane,WR,USC,200,"6'4""",89,85,82.15
+76,LT Overton,EDGE,Alabama,278,"6'3""",88,84,82.81
+77,Jalon Kilgore,SAF,South Carolina,211,"6'1""",88,84,83.42
+78,Caleb Tiernan,OT,Northwestern,325,"6'7""",81,86,83.1
+79,Devin Moore,CB,Florida,198,"6'3""",88,85,82.95
+80,Derrick Moore,EDGE,Michigan,260,"6'3""",89,87,84
+81,Julian Neal,CB,Arkansas,200,"6'2""",89,85,83.24
+82,Kadyn Proctor,OT,Alabama,366,"6'7""",78,86,83.05
+83,Germie Bernard,WR,Alabama,204,"6'1""",86,86,83.8
+84,Will Lee III,CB,Texas A&M,189,"6'1""",84,87,83.45
+85,Max Klare,TE,Ohio State,243,"6'5""",85,84,83.12
+86,VJ Payne,SAF,TCU,206,"6'3""",89,87,83.21
+87,Jake Slaughter,OC,Florida,303,"6'4""",81,84,82.1
+88,Joshua Josephs,EDGE,Tennessee,245,"6'3""",87,81,81.78
+89,Zakee Wheatley,SAF,Penn State,200,"6'2""",88,82,81.42
+90,Chris McClellan,DT,Missouri,323,"6'4""",81,82,80.6
+91,Billy Schrauth,OG,Notre Dame,310,"6'4""",79,84,80.02
+92,Daylen Everette,CB,Georgia,190,"6'1""",84,84,80.21
+93,Bryce Lance,WR,North Dakota State,209,"6'3""",87,85,81.45
+94,Davison Igbinosun,CB,Ohio State,195,"6'2""",86,85,84.15
+95,Zane Durant,DT,Penn State,290,"6'1""",89,83,82.39
+96,Tanner Koziol,TE,Houston,240,"6'7""",85,88,80.56
+97,Bud Clark,SAF,TCU,185,"6'2""",85,90,84.8
+98,Romello Height,EDGE,Texas Tech,240,"6'3""",86,87,82.6
+99,Justin Joly,TE,Cincinnati,251,"6'3""",87,83,81.56
+100,Darrell Jackson Jr.,DT,Florida State,337,"6'5""",88,83,82.13
+101,Chandler Rivers,CB,Duke,185,"5'10""",85,89,83.84
+102,Kevin Coleman Jr.,WR,Missouri,180,"5'11""",85,84,83.01
+103,Matt Gulbin,OC,Michigan State,312,"6'4""",79,84,80.56
+104,DeMonte Capehart,DT,Clemson,315,"6'5""",86,84,80.96
+105,Antonio Williams,WR,Clemson,190,"5'11""",86,86,83.57
+106,Keylan Rutledge,OG,Georgia Tech,330,"6'4""",82,85,81.4
+107,Michael Taaffe,SAF,Texas,189,Jun-00,83,87,81.05
+108,Brenen Thompson,WR,Mississippi State,170,"5'9""",94,88,81.95
+109,Taurean York,LB,Texas A&M,227,"5'10""",88,82,81
+110,Parker Brailsford,OC,Alabama,290,"6'2""",82,87,83.32
+111,Zachariah Branch,WR,Georgia,180,"5'10""",93,84,82.78
+112,Kamari Ramsey,SAF,USC,205,Jun-00,87,84,83.9
+113,Tim Keenan III,DT,Alabama,326,"6'2""",80,81,78.57
+114,Ty Simpson,QB,Alabama,208,"6'2""",79,86,84.92
+115,Beau Stephens,OG,Iowa,310,"6'5""",82,85,83.31
+116,Hezekiah Masses,CB,California,185,"6'1""",85,87,81.66
+117,Skyler Gill-Howard,DT,Texas Tech,290,"6'1""",82,88,82.24
+118,Bryce Boettcher,LB,Oregon,232,"6'2""",86,88,81.45
+119,Jalen Farmer,OG,Kentucky,318,"6'5""",78,84,80.24
+120,Isaiah World,OT,Oregon,318,"6'8""",81,82,80.2
+121,Domonique Orange,DT,Iowa State,325,"6'4""",80,82,81.24
+122,Keyron Crawford,EDGE,Auburn,245,"6'4""",85,84,81.02
+123,Devon Marshall,CB,NC State,200,"5'11""",85,87,81.44
+124,Kaleb Elarms-Orr,LB,TCU,234,"6'2""",87,84,81.4
+125,Trey Zuhn III,OT,Texas A&M,319,"6'6""",80,86,81.24
+126,James Brockermeyer,OC,Miami (FL),295,"6'3""",80,85,80.45
+127,Kaytron Allen,RB,Penn State,217,"5'11""",87,89,82.42
+128,Keyshaun Elliot,LB,Arizona State,235,"6'2""",88,78.24,78.24
+129,Austin Barber,OT,Florida,314,"6'6""",80,84,81.12
+130,Pat Coogan,OC,Indiana,290,"6'4""",81,86,80.54
+131,Tacario Davis,CB,Washington,194,"6'4""",88,84,79.91
+132,Jalen Huskey,SAF,Maryland,201,"6'2""",84,85,80.03
+133,Sam Roush,TE,Stanford,260,6'5',85,84,81.33
+134,Kage Casey,OT,Boise State,310,"6'6""",83,84,80.64
+135,Jager Burton ,OC,Kentucky,312,6'4',85,83,80.21
+136,Jordan Hudson,WR,SMU,200,"6'1""",85,85,80.56
+137,Demond Claiborne,RB,Wake Forest,195,"5'10""",93,85,82.39
+138,Kendal Daniels,LB,Oklahoma,242,"6'5""",87,86,81.8
+139,Eli Heidenreich,WR,Navy,206,"6'1""",85,85,79.87
+140,Skyler Thomas,SAF,Oregon State,212,"6'2""",87,83,82.05
+141,Rayshaun Benny,DT,Michigan,305,"6'4""",82,82,78.58
+142,Jeff Caldwell,WR,Cincinnati,215,"6'5""",88,82,79.84
+143,Dametrious Crownover,OT,Texas A&M,335,"6'7""",80,83,80.37
+144,Fa'alili Fa'amoe,OG,Wake Forest,320,"6'5""",78,82,79.85
+145,Jack Kelly,LB,BYU,242,"6'2""",85,86,79.45
+146,Cole Wisniewski,SAF,Texas Tech,220,"6'3""",81,83,81.95
+147,Michael Trigg,TE,Baylor,240,"6'4""",88,87,80.33
+148,Desmond Reid,RB,Pittsburgh,175,"5'8""",87,86,79.9
+149,Harold Perkins Jr.,LB,LSU,222,"6'1""",86,82,79.82
