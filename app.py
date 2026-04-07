@@ -77,92 +77,81 @@ st.session_state.section = section
 @st.dialog("Player Fit Profile")
 def show_search_player_dialog(player_name, df):
     search_name = player_name.strip()
-    # Search in trait_df (your new 150-player master file)
+    # Search in trait_df
     result = trait_df[trait_df["Player"].str.strip() == search_name]
     
     if not result.empty:
         player = result.iloc[0]
-        st.subheader(f"{player['Player']} | {player['Position']}")
         
-        # --- 1. DATA EXTRACTION ---
+        # --- TOP ROW: HEADER (Left) and CLOSE BUTTON (Right) ---
+        head_col, btn_col = st.columns([3, 1])
+        
+        with head_col:
+            st.subheader(f"{player['Player']} | {player['Position']}")
+        
+        with btn_col:
+            # Small button aligned to the right
+            if st.button("✖ Close", key="top_close_btn"):
+                if "active_search_player" in st.session_state:
+                    del st.session_state.active_search_player
+                st.rerun()
+
+        # --- DATA EXTRACTION ---
         t1, v1 = player["Trait1"], pd.to_numeric(player["Val1"], errors='coerce') or 0
         t2, v2 = player["Trait2"], pd.to_numeric(player["Val2"], errors='coerce') or 0
         t3, v3 = player["Trait3"], pd.to_numeric(player["Val3"], errors='coerce') or 0
         t4, v4 = player["Trait4"], pd.to_numeric(player["Val4"], errors='coerce') or 0
         t5, v5 = player["Trait5"], pd.to_numeric(player["Val5"], errors='coerce') or 0
         
-        # --- 2. DYNAMIC SCHEME FIT CALCULATION ---
-        # We average the 5 traits to get a 0-100 score
+        # --- SCHEME FIT ---
         vikings_fit = round((v1 + v2 + v3 + v4 + v5) / 5, 1)
 
-        # Row 1: Scheme Fit (No Percent) + Trait 1 + Trait 2
+        # Row 1 Metrics
         m1, m2, m3 = st.columns(3)
-        m1.metric("Vikings Fit", f"{vikings_fit}") # Removed the % here
+        m1.metric("Vikings Fit", f"{vikings_fit}")
         m2.metric(str(t1), f"{int(v1)}")
         m3.metric(str(t2), f"{int(v2)}")
-        # Row 2: Trait 3 + Trait 4 + Trait 5
+        
+        # Row 2 Metrics
         m4, m5, m6 = st.columns(3)
         m4.metric(str(t3), f"{int(v3)}")
         m5.metric(str(t4), f"{int(v4)}")
         m6.metric(str(t5), f"{int(v5)}")
 
-       # =========================================================
-        # --- 4. 6-POINT RADAR CHART (Optimized for Dark Mode) ---
-        # =========================================================
+        # --- RADAR CHART ---
         categories = ['Vikings Fit', t1, t2, t3, t4, t5]
         values = [vikings_fit, v1, v2, v3, v4, v5]
         
-        # We need to duplicate the first value/category to "close" the loop
         fig = go.Figure()
         fig.add_trace(go.Scatterpolar(
             r=values + [values[0]],
             theta=categories + [categories[0]],
             fill='toself',
-            fillcolor='rgba(79, 38, 131, 0.5)', # Vikings Purple (Slightly opaque)
-            line=dict(color='#FFC62F', width=2), # Vikings Gold Line
-            marker=dict(color='#FFC62F', size=7) # Gold Dots
+            fillcolor='rgba(79, 38, 131, 0.5)', 
+            line=dict(color='#FFC62F', width=2), 
+            marker=dict(color='#FFC62F', size=7) 
         ))
         
         fig.update_layout(
             polar=dict(
-                # Making the background of the spider chart blend with your dark theme
-                bgcolor="rgba(10, 10, 10, 0.8)", # Dark Grey
-                radialaxis=dict(
-                    visible=True,
-                    # --- CRITICAL CHANGE: Range 70-100 to show differences ---
-                    range=[70, 100], 
-                    color="gray", # Gridline color
-                    gridcolor="gray",
-                    linecolor="gray",
-                    tickfont=dict(color="gray")
-                ),
-                angularaxis=dict(
-                    color="#FFC62F", # Gold text labels for traits
-                    gridcolor="gray",
-                    linecolor="gray",
-                    rotation=90 # Scheme Fit stays at the top
-                )
+                bgcolor="rgba(10, 10, 10, 0.8)", 
+                radialaxis=dict(visible=True, range=[70, 100], color="gray"),
+                angularaxis=dict(color="#FFC62F", rotation=90)
             ),
             showlegend=False,
             height=400,
-            # Adjust margins so labels don't get cut off
-            margin=dict(l=60, r=60, t=60, b=60),
-            paper_bgcolor="rgba(0,0,0,0)", # Transparent outer background
+            margin=dict(l=60, r=60, t=20, b=20), # Tightened margins
+            paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)"
         )
         
-        
         st.plotly_chart(fig, use_container_width=True)
-        
-        st.markdown("---")
-        if st.button("Close and Reset"):
-            if "active_search_player" in st.session_state:
-                del st.session_state.active_search_player
-            st.rerun()
             
     else:
-        st.error(f"Could not find data for: '{player_name}'")
-        if st.button("Close"):
+        # Error handling also with a top-right close button
+        head_col, btn_col = st.columns([3, 1])
+        head_col.error(f"Missing data: '{player_name}'")
+        if btn_col.button("✖ Close", key="err_close"):
             del st.session_state.active_search_player
             st.rerun()
 # =========================================================
@@ -232,12 +221,11 @@ elif section == "Why":
 # =========================================================
 # TABS
 # =========================================================
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "Draft Index",
     "Big Board",
     "Player Fits",
     "Draft Guide",
-    "Build Draft Model",
     "Player Comparison"
 ])
 # ---------------- TAB 1 ----------------
@@ -1117,234 +1105,101 @@ with tab4:
                 st.rerun()
 
         show_profile()
+
 with tab5:
+    st.header("Player Comparison")
+    st.markdown("Compare two prospects side-by-side based on their scouting traits.")
+
+    comp_df = trait_df.copy() 
+    player_list = sorted(comp_df["Player"].unique().tolist())
+
+    is_popup_open = "selected_player" in st.session_state
+    if is_popup_open:
+        st.warning("⚠️ Profile Popup is active. Close it to enable comparison.")
     
-    st.header("Vikings Draft Model")
+    c1, c2 = st.columns(2)
+    with c1:
+        p1_name = st.selectbox("Search Player 1", [""] + player_list, key="comp_1", disabled=is_popup_open)
+    with c2:
+        p2_name = st.selectbox("Search Player 2", [""] + player_list, key="comp_2", disabled=is_popup_open)
 
-    # -------------------------
-    # LOAD DATA
-    # -------------------------
-    offense_df = pd.read_csv("kocreal.csv")
-    defense_df = pd.read_csv("flores.csv")
+    if p1_name and p2_name:
+        p1_data = comp_df[comp_df["Player"] == p1_name].iloc[0]
+        p2_data = comp_df[comp_df["Player"] == p2_name].iloc[0]
 
-    # -------------------------
-    # CREATE UNIVERSAL VIKINGS FIT (FOR ALL PLAYERS)
-    # -------------------------
-    base = base_df.copy()
-
-    base["Athleticism"] = pd.to_numeric(base["Athleticism"], errors="coerce").fillna(70)
-    base["Production"] = pd.to_numeric(base["Production"], errors="coerce").fillna(70)
-
-    # 🔥 THIS FIXES YOUR PROBLEM → applies to ALL 150 players
-    base["Vikings_Fit"] = (
-        base["Athleticism"] * 0.6 +
-        base["Production"] * 0.4
-    )
-
-    # -------------------------
-    # SEARCH BAR (🔥 BIG FEATURE)
-    # -------------------------
-    st.subheader("Search Any Prospect")
-
-    search = st.text_input("Enter player name")
-
-    if search:
-        result = base[base["Player"].str.contains(search, case=False, na=False)]
-
-        if not result.empty:
-            player = result.iloc[0]
-
-            st.markdown(f"### {player['Player']} ({player['Position']})")
-
-            c1, c2, c3 = st.columns(3)
-
-            c1.metric("Vikings Fit", round(player["Vikings_Fit"], 1))
-            c2.metric("Athleticism", player["Athleticism"])
-            c3.metric("Production", player["Production"])
-
-        else:
-            st.warning("Player not found")
-
-    st.markdown("---")
-
-    # -------------------------
-    # TEAM NEEDS
-    # -------------------------
-    team_needs = {
-        "DT":9,"OC":9,"SAF":8,"RB":8,"WR":7,"CB":7,
-        "OT":6,"TE":6,"EDGE":4,"LB":3,"OG":3,"QB":2
-    }
-
-    base["Need_Score"] = base["Position"].map(team_needs).fillna(3)
-
-    # -------------------------
-    # BIG BOARD BASELINE
-    # -------------------------
-    base = base.reset_index(drop=True)
-    base["BigBoard"] = len(base) - base.index
-
-    # -------------------------
-    # MODEL TYPES (NO SLIDERS)
-    # -------------------------
-    st.subheader("Model Type")
-
-    c1, c2, c3 = st.columns(3)
-
-    if "weights" not in st.session_state:
-        st.session_state.weights = {"fit":50,"need":20,"board":30}
-
-    if c1.button("Best Player Available"):
-        st.session_state.weights = {"fit":60,"need":10,"board":30}
-
-    if c2.button("Scheme Fit Focus"):
-        st.session_state.weights = {"fit":70,"need":20,"board":10}
-
-    if c3.button("Team Need Focus"):
-        st.session_state.weights = {"fit":40,"need":50,"board":10}
-
-    fit_w = st.session_state.weights["fit"]
-    need_w = st.session_state.weights["need"]
-    board_w = st.session_state.weights["board"]
-
-    # -------------------------
-    # NORMALIZATION (🔥 FIXES HUGE SCORES)
-    # -------------------------
-    base["Fit_N"] = base["Vikings_Fit"] / 100
-    base["Need_N"] = base["Need_Score"] / 10
-    base["Board_N"] = base["BigBoard"] / len(base)
-
-    # -------------------------
-    # FINAL SCORE
-    # -------------------------
-    base["Final_Score"] = (
-        base["Fit_N"] * fit_w +
-        base["Need_N"] * need_w +
-        base["Board_N"] * board_w
-    )
-
-    base = base.sort_values("Final_Score", ascending=False).reset_index(drop=True)
-    base.index += 1
-
-    # -------------------------
-    # VALUE TAG (🔥 COOL FEATURE)
-    # -------------------------
-    pos_avg = base.groupby("Position")["Final_Score"].mean().to_dict()
-
-    def value_tag(pos):
-        v = pos_avg.get(pos,0)
-        if v > 0.65:
-            return " High Value"
-        elif v > 0.5:
-            return "Solid"
-        else:
-            return "Low"
-
-    base["Value"] = base["Position"].apply(value_tag)
-
-    # -------------------------
-    # FINAL BOARD (ALL 150 PLAYERS)
-    # -------------------------
-    st.subheader("Full Draft Board")
-
-    st.dataframe(
-        base[["Player","Position","School","Final_Score","Value"]],
-        use_container_width=True
-    )
-# ---------------- TAB 6: PLAYER COMPARISON ----------------
-with tab6:
-    st.header("Player Comparison Tool")
-
-    # 1. Setup the Selection Columns
-    col1, col2 = st.columns(2)
-
-    with col1:
-        p1_name = st.selectbox("Player 1", options=[""] + player_list, index=0, key="comp_p1")
-
-    with col2:
-        p2_name = st.selectbox("Player 2", options=[""] + player_list, index=0, key="comp_p2")
-
-    # 2. Check if both players are selected
-    if p1_name != "" and p2_name != "":
-        # Pull data from traits.csv (trait_df)
-        p1_data = trait_df[trait_df["Player"] == p1_name].iloc[0]
-        p2_data = trait_df[trait_df["Player"] == p2_name].iloc[0]
-
-        # Function to map traits from traits.csv
-        def get_traits(row):
-            return {
-                str(row["Trait1"]): pd.to_numeric(row["Val1"], errors='coerce') or 0,
-                str(row["Trait2"]): pd.to_numeric(row["Val2"], errors='coerce') or 0,
-                str(row["Trait3"]): pd.to_numeric(row["Val3"], errors='coerce') or 0,
-                str(row["Trait4"]): pd.to_numeric(row["Val4"], errors='coerce') or 0,
-                str(row["Trait5"]): pd.to_numeric(row["Val5"], errors='coerce') or 0,
-            }
-
-        t1 = get_traits(p1_data)
-        t2 = get_traits(p2_data)
-
-        # 3. DISPLAY METRICS (TOP HALF)
-        c1, c2 = st.columns(2)
-
-        for col, p, traits in zip([c1, c2], [p1_data, p2_data], [t1, t2]):
-            col.markdown(f"### {p['Player']}")
-            # EDGE | Ohio State format
-            col.write(f"**{p['Position']} | {p['School']}**")
-            
-            # Display traits as clean metrics (No bullets)
-            for trait, val in traits.items():
-                col.metric(trait, int(val))
-
-  
-        # 5. SPIDER CHART (BOTTOM)
         st.markdown("---")
-        st.subheader("Visual Skill Comparison")
-        
-        categories = list(t1.keys())
-        fig = go.Figure()
 
-        # Player 1 Trace (Purple)
-        fig.add_trace(go.Scatterpolar(
-            r=list(t1.values()) + [list(t1.values())[0]],
-            theta=categories + [categories[0]],
+        col_left, col_right = st.columns(2)
+
+        with col_left:
+            st.subheader(p1_name)
+            st.caption(f"{p1_data.get('Position', 'N/A')} | {p1_data.get('School', 'N/A')}")
+            st.write("") # Spacer
+            
+            for i in range(1, 6):
+                t_name = str(p1_data[f"Trait{i}"])
+                val = int(pd.to_numeric(p1_data[f"Val{i}"]) or 0)
+                st.metric(label=t_name, value=val)
+
+        with col_right:
+            st.subheader(p2_name)
+            st.caption(f"{p2_data.get('Position', 'N/A')} | {p2_data.get('School', 'N/A')}")
+            st.write("") 
+
+            for i in range(1, 6):
+                t_name = str(p2_data[f"Trait{i}"])
+                val = int(pd.to_numeric(p2_data[f"Val{i}"]) or 0)
+                st.metric(label=t_name, value=val)
+
+        st.markdown("### Visual Overlap")
+        
+        p1_labels = [p1_data[f"Trait{i}"] for i in range(1, 6)]
+        p1_vals = [pd.to_numeric(p1_data[f"Val{i}"]) or 0 for i in range(1, 6)]
+        
+        p2_labels = [p2_data[f"Trait{i}"] for i in range(1, 6)]
+        p2_vals = [pd.to_numeric(p2_data[f"Val{i}"]) or 0 for i in range(1, 6)]
+
+        fig_comp = go.Figure()
+
+       
+        fig_comp.add_trace(go.Scatterpolar(
+            r=p1_vals + [p1_vals[0]],
+            theta=p1_labels + [p1_labels[0]],
             fill='toself',
-            fillcolor='rgba(79, 38, 131, 0.5)',
+            fillcolor='rgba(79, 38, 131, 0.4)',
             line=dict(color='#FFC62F', width=2),
             name=p1_name
         ))
 
-        # Player 2 Trace (White/Contrast)
-        fig.add_trace(go.Scatterpolar(
-            r=list(t2.values()) + [list(t2.values())[0]],
-            theta=categories + [categories[0]],
+        fig_comp.add_trace(go.Scatterpolar(
+            r=p2_vals + [p2_vals[0]],
+            theta=p2_labels + [p2_labels[0]],
             fill='toself',
             fillcolor='rgba(255, 255, 255, 0.2)',
             line=dict(color='#FFFFFF', width=2),
             name=p2_name
         ))
 
-        fig.update_layout(
+        fig_comp.update_layout(
             polar=dict(
-                bgcolor="rgba(10, 10, 10, 0.8)",
-                radialaxis=dict(
-                    visible=True, 
-                    range=[70, 100], # Zoomed in for precision
-                    color="gray",
-                    gridcolor="rgba(255, 255, 255, 0.1)"
-                ),
-                angularaxis=dict(color="#FFC62F", rotation=90)
+                bgcolor="rgba(20, 20, 20, 0.9)",
+                radialaxis=dict(visible=True, range=[70, 100], color="gray"),
+                angularaxis=dict(color="#FFC62F")
             ),
-            showlegend=True,
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
-            height=500
+            height=500,
+            showlegend=True
         )
 
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig_comp, use_container_width=True)
+    else:
+        st.info("Select two players above to see the comparison metrics and chart.")
 # =========================================================
 # FINAL TRIGGER (PLACE AT THE VERY END OF YOUR SCRIPT)
 # =========================================================
 if "active_search_player" in st.session_state:
-    # If the Search Bar is active, kill the Tab memory
+    
     if "selected_player" in st.session_state:
         del st.session_state.selected_player
     try:
@@ -1352,9 +1207,6 @@ if "active_search_player" in st.session_state:
     except:
         pass
 
-# Only show the Tab popup if the Search Bar ISN'T trying to show one
 elif "selected_player" in st.session_state:
-    # This ensures Tab 4 and Tab 3 popups work without clashing
-    if section == "Home": # Only show tab popups on the Home/Main page
-        # If your Tab 4 logic is already calling show_profile(), you are good.
+    if section == "Home": 
         pass
